@@ -1,0 +1,62 @@
+<snippet>
+	<content><![CDATA["""Software desarrollado por Robotronica"""
+
+# Librerias
+import argparse
+from naoqi import *
+import time
+
+# Eventos
+evento = 'robotronica/internetCosas/imprimir'
+
+
+# Modulo para subscribir un evento
+class ${1:ModuloClass}(ALModule):
+	"""python class ImprimirModule test auto documentation : comment needed to create a new python module"""
+
+	def ${3:callback}(self, strVarName, value):
+		"""callback when data change"""
+		print "Imprmiendoooo"
+
+
+
+# Funcion Main donde se comienza el programa y se define el broker.
+def main (ipRobot, puerto):
+	# Arrancamos el broker.
+	broker = ALBroker("pythonBroker", "0.0.0.0", 0, ipRobot, puerto)
+
+	# Call method
+	try:
+		${2:Modulo} = ${1:ModuloClass}("${2:Modulo}")
+		prox = ALProxy("ALMemory")
+		#prox.insertData("val",1) # forbiden, data is optimized and doesn't manage callback
+		prox.subscribeToEvent(evento,"${2:Modulo}", "${3:callback}") #  event is case sensitive !
+
+	except Exception,e:
+		print "error"
+		print e
+		exit(1)
+
+	while (1):
+		time.sleep(2)
+
+
+
+if __name__ == "__main__":
+	# Cargamos la clase argument_parser 
+	parser = argparse.ArgumentParser()
+	# Add argumentos
+	parser.add_argument("--ip", type=str, default="pepper.local", help="Robot IP address. On robot or Local Naoqi: use '127.0.0.1'.")
+	parser.add_argument("--port", type=int, default=9559,help="Naoqi port number")
+	# Parseramos todo
+	args = parser.parse_args()
+	
+	# Comenzamos en la funcion main
+	main(args.ip, args.port)
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>qiBroker</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.python</scope>
+</snippet>

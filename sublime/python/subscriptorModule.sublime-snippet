@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[# create python module
+class ${1:SubscriptorModule}(ALModule):
+  """python class ${1:SubscriptorModule} test auto documentation : comment needed to create a new python module"""
+
+  def pythondatachanged(self, strVarName, value):
+    """callback when data change"""
+    $2
+
+  def _pythonPrivateMethod(self, param1, param2, param3):
+    global check
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>qiModulo</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.python</scope>
+</snippet>

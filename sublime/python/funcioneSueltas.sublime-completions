@@ -1,0 +1,7 @@
+{
+	"scope": "source.python",
+	"completions":
+	[
+		{"trigger": "asincrono_qi", "contents": " _async=True"}
+	]
+}
